@@ -83,12 +83,10 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* geo
     glDeleteShader(fragment);
     if (geometryPath != nullptr)
         glDeleteShader(geometry);
-    std::cout << "1program id = "<<ID;
 }
 
 void Shader::use()
 {
-    std::cout << " 2program id = " << ID;
     glUseProgram(ID);
 }
 
