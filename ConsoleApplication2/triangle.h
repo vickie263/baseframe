@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Baseframe.h>
+#include <Textures.h>
 
 class triangle : Baseframe
 {

@@ -12,8 +12,6 @@ public:
 
 protected:
 	int createWindow(int screen_w, int screen_h, const char* title);
-	Mesh setupMesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
-	Mesh setupMeshs(vector<Vertex_s> vertices, vector<unsigned int> indices, vector<Texture> textures);
 	void drawMesh(Mesh *pmesh, Shader shader);
 	void drawMesh2(Mesh *pmesh);
 
