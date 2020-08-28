@@ -133,7 +133,7 @@ void Mesh::setupMesh_s()
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex_s), (void*)0);
     // vertex texture coords
-    glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex_s), (void*)offsetof(Vertex_s, TexCoords));
 
     glBindVertexArray(0);

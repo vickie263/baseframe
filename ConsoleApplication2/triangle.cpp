@@ -12,7 +12,7 @@ triangle::triangle()
 	vector<Vertex_s> vertices;
 	vector<unsigned int> indices;
 	vector<Texture> textures;
-	Vertex_s ver1, ver2, ver3;
+	Vertex_s ver1, ver2, ver3,ver4;
 	Texture tex1;
 	ver1.Position = glm::vec3(0.5,0.5,0.0);
 	ver1.TexCoords = glm::vec2(1.0,1.0);
@@ -23,9 +23,15 @@ triangle::triangle()
 	ver3.Position = glm::vec3(-0.5, -0.5, 0.0);
 	ver3.TexCoords = glm::vec2(0.0, 0.0);
 	vertices.push_back(ver3);
+	ver4.Position = glm::vec3(-0.5, 0.5, 0.0);
+	ver4.TexCoords = glm::vec2(0.0,1.0);
+	vertices.push_back(ver4);
 	indices.push_back(0);
 	indices.push_back(1);
 	indices.push_back(2);
+	indices.push_back(2);
+	indices.push_back(3);
+	indices.push_back(0);
 	Textures *ptex = new Textures();
 	Texture2DParameter params1;
 	params1.name = ptex->TEXTURE_WRAP_S;
