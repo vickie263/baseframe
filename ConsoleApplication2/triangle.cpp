@@ -4,7 +4,7 @@
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
+void setTextureParam(Textures* ptex);
 
 triangle::triangle()
 {
@@ -13,7 +13,7 @@ triangle::triangle()
 	vector<unsigned int> indices;
 	vector<Texture> textures;
 	Vertex_s ver1, ver2, ver3,ver4;
-	Texture tex1;
+	Texture tex1,tex2;
 	ver1.Position = glm::vec3(0.5,0.5,0.0);
 	ver1.TexCoords = glm::vec2(1.0,1.0);
 	vertices.push_back(ver1);
@@ -33,29 +33,22 @@ triangle::triangle()
 	indices.push_back(3);
 	indices.push_back(0);
 	Textures *ptex = new Textures();
-	Texture2DParameter params1;
-	params1.name = ptex->TEXTURE_WRAP_S;
-	params1.iparam = ptex->REPEAT;
-	ptex->texture2Dparameters.push_back(params1);
-	Texture2DParameter params2;
-	params2.name = ptex->TEXTURE_WRAP_T;
-	params2.iparam = ptex->REPEAT;
-	ptex->texture2Dparameters.push_back(params2);
-	Texture2DParameter params3;
-	params3.name = ptex->TEXTURE_MIN_FILTER;
-	params3.iparam = ptex->LINEAR;
-	ptex->texture2Dparameters.push_back(params3);
-	Texture2DParameter params4;
-	params4.name = ptex->TEXTURE_MAG_FILTER;
-	params4.iparam = ptex->LINEAR;
-	ptex->texture2Dparameters.push_back(params4);
+	setTextureParam(ptex);
 
-	ptex->genTexture("F:/OL/baseframe/ConsoleApplication2/textures/1075.jpg");
+	ptex->genTexture("F:/OL/baseframe/ConsoleApplication2/textures/1079.png");
 	tex1.id = ptex->ID;
 	tex1.type = "texture_normal";
 	textures.push_back(tex1);
+	ptex = new Textures();
+	setTextureParam(ptex);
+	ptex->genTexture("F:/OL/baseframe/ConsoleApplication2/textures/1076.jpg");
+	tex2.id = ptex->ID;
+	tex2.type = "texture_normal";
+	textures.push_back(tex2);
 	pmesh = new Mesh(vertices, indices, textures);
 	ptriangleshader = new Shader("triangle.vs", "triangle.fs");
+	ptriangleshader->use();
+	ptriangleshader->setFloat("mixValue", 0.5);
 }
 
 triangle::~triangle()
@@ -72,3 +65,22 @@ void triangle::update()
 	drawMesh(pmesh, *ptriangleshader);
 }
 
+void setTextureParam(Textures* ptex)
+{
+	Texture2DParameter params1;
+	params1.name = ptex->TEXTURE_WRAP_S;
+	params1.iparam = ptex->REPEAT;
+	ptex->texture2Dparameters.push_back(params1);
+	Texture2DParameter params2;
+	params2.name = ptex->TEXTURE_WRAP_T;
+	params2.iparam = ptex->REPEAT;
+	ptex->texture2Dparameters.push_back(params2);
+	Texture2DParameter params3;
+	params3.name = ptex->TEXTURE_MIN_FILTER;
+	params3.iparam = ptex->LINEAR;
+	ptex->texture2Dparameters.push_back(params3);
+	Texture2DParameter params4;
+	params4.name = ptex->TEXTURE_MAG_FILTER;
+	params4.iparam = ptex->LINEAR;
+	ptex->texture2Dparameters.push_back(params4);
+}
